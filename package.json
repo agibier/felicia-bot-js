@@ -1,6 +1,6 @@
 {
   "name": "FeliciaBot",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Simple bot for discord channel",
   "engines": {
     "node": "~6.0.0"
@@ -10,7 +10,7 @@
     "start": "node Felicia.js"
   },
   "dependencies": {
-    "discord.js": "*"
+    "discord.js": "*",
   },
   "repository": {
     "type": "git",
