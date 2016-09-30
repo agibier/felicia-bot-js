@@ -1,40 +1,70 @@
 {
-  "games" :[
-	"Overwatch",
-	"Rocket League",
-	"Killing Floor",
-	"Evolve"
-  ],
-  "gameProposal":[
-	"Je vous propose de jouer à ",
-	"Voici un jeu qui devrait vous convenir : ",
-	"J'ai trouvé ce jeu au fond d'un tiroir : ",
-	"Et si vous faisiez une petite partie de ce jeu : ",
-	"Vous devriez vraiment jouer à "
-  ],
-  "cleanUpResponse":[
-	"Je vous prierai d'essayer de garder ce salon en ordre.",
-	"Attention, vous avez renversé une table monsieur.",
-	"Ceci sera mieux à cette place.",
-	"Heureusement qu'il n'y avait rien sur cette table.",
-	"Pourquoi tant de violence ?",
-	"Vous me donnez vraiment beaucoup de travail..."
-  ],
-  "UrWelcome":[
-	"De rien ! <3",
-	"De rien !",
-	"A votre service.",
-	"C'est mon rôle de vous servir.",
-	"Je fais de mon mieux.",
-	"Tout le plaisir est pour moi",
-	"N'hésitez pas à demander si il vous faut autre chose."
-  ],
-  "Greetings":[
-	"Salut ",
-	"Bonjour ",
-	"Yo ",
-	"Coucou ",
-	"Salutations ",
-	"Hey "
-  ]
+    "games": [
+        "Overwatch",
+        "Rocket League",
+        "Killing Floor",
+        "Evolve"
+    ],
+    "gameProposal": [
+        "Je vous propose de jouer à ",
+        "Voici un jeu qui devrait vous convenir : ",
+        "J'ai trouvé ce jeu au fond d'un tiroir : ",
+        "Et si vous faisiez une petite partie de ce jeu : ",
+        "Vous devriez vraiment jouer à "
+    ],
+    "cleanUpResponse": [
+        "Je vous prierai d'essayer de garder ce salon en ordre.",
+        "Attention, vous avez renversé une table monsieur.",
+        "Ceci sera mieux à cette place.",
+        "Heureusement qu'il n'y avait rien sur cette table.",
+        "Pourquoi tant de violence ?",
+        "Vous me donnez vraiment beaucoup de travail..."
+    ],
+    "UrWelcome": [
+        "De rien ! <3",
+        "De rien !",
+        "A votre service.",
+        "C'est mon rôle de vous servir.",
+        "Je fais de mon mieux.",
+        "Tout le plaisir est pour moi",
+        "N'hésitez pas à demander si il vous faut autre chose."
+    ],
+    "Greetings": [
+        "Salut ",
+        "Bonjour ",
+        "Yo ",
+        "Coucou ",
+        "Salutations ",
+        "Hey "
+    ],
+	"Goodbye": [
+		"J'espère vous revoir bientôt ",
+		"Ravie de vous avoir vu aujourd'hui ",
+		"Je reste ici si jamais vous me cherchez ",
+		"A la prochaine ",
+		"Bye ",
+		"A la revoyure "
+	],
+	"EightBall": [
+		":slight_smile: C'est certain.",
+		":slight_smile: Il en a été décité ainsi.",
+		":slight_smile: Sans aucun doute",
+		":slight_smile: Oui, définitivement",
+		":slight_smile: Tu peux compter dessus",
+		":slight_smile: Tel que je le vois, oui",
+		":slight_smile: Sûrement",
+		":slight_smile: Il y a de bonnes perspectives",
+		":slight_smile: Oui",
+		":slight_smile: Les signes montrent que oui",
+		":confused: Les astres sont confus, essaye encore",
+		":confused: Demande plus tard",
+		":confused: Il ne vaut mieux pas que je te réponde maintenant",
+		":confused: Je ne peux pas prédire maintenant",
+		":confused: Concentre-toi, et redemande",
+		":frowning: Ne compte pas dessus",
+		":frowning: Ma réponse est : non",
+		":frowning: Mes sources disent que non",
+		":frowning: les perspectives ne sont pas bonnes",
+		":frowning: C'est vraiment douteux"
+	]
 }
