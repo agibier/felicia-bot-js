@@ -146,7 +146,7 @@ function HandleServersMessages(message)
         }        
     }
 
-    if (message.content === "!8ball")
+    if (message.content.startsWith("!8ball"))
     {
         var selected = EightBall[randomInt(0, EightBall.length)];
         message.channel.sendMessage(selected);
