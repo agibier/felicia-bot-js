@@ -1,10 +1,4 @@
 {
-    "games": [
-        "Overwatch",
-        "Rocket League",
-        "Killing Floor",
-        "Evolve"
-    ],
     "gameProposal": [
         "Je vous propose de jouer à ",
         "Voici un jeu qui devrait vous convenir : ",

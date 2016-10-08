@@ -20,9 +20,46 @@ bot.on('ready', () => {
 
 var debug = false;
 
+var jsonGames;
+var gameList;
+fs.stat('gamelist.json', function (err, stat) {
+    if (err == null) 
+    {
+        console.log('game list file found');
+        jsonGames = JSON.parse(fs.readFileSync("gamelist.json"));
+
+        console.log(jsonGames);
+
+        gameList = jsonGames.games;
+
+        console.log(gameList);
+    } else if (err.code == 'ENOENT') 
+    {
+        console.log('game list file not found, create it');
+        // file does not exist
+        jsonGames = {
+            "games": [
+                "Overwatch",
+                "Rocket League",
+                "Killing Floor",
+                "Evolve"
+            ]
+        };
+        SaveGames();
+
+        console.log(jsonGames);
+
+        gameList = jsonGames.games;
+
+        console.log(gameList);
+
+    } else {
+        console.log('Some other error: ', err.code);
+    }
+});
+
 var contents = fs.readFileSync("data.json");
 var jsonContent = JSON.parse(contents);
-var gameList = jsonContent.games;
 var unflip = jsonContent.cleanUpResponse;
 var greetings = jsonContent.Greetings;
 var urwelcome = jsonContent.UrWelcome;
@@ -103,6 +140,17 @@ function HandleServersMessages(message)
         message.channel.sendMessage(selected);
     }
 
+    if (message.content == "sousse"
+        || message.content == "Sousse")
+    {
+        message.channel.sendMessage("Bonsoir.");
+    }
+
+    if (message.content == "supprime")
+    {
+        message.delete();
+    }
+
     if (message.content.indexOf("(╯°□°）╯︵ ┻━┻") > -1) {
         var selected = unflip[randomInt(0, unflip.length)];
         message.channel.sendMessage('┬─┬﻿ ノ( ゜-゜ノ) ');
@@ -146,8 +194,9 @@ function HandleServersMessages(message)
         }        
     }
 
-    if (message.content.startsWith("!8ball"))
+    if (message.content.startsWith("!8ball") && message.content.endsWith("?"))
     {
+        //message.edit(message.content.replace("!8ball", ":8ball:"));
         var selected = EightBall[randomInt(0, EightBall.length)];
         message.channel.sendMessage(selected);
     }
@@ -207,11 +256,11 @@ function HandleDirectMessages(message)
         for (var i = 0, len = parameters.length; i < len; i++)
         {
             parameters[i] = parameters[i].trim();
-            jsonContent.games.push(parameters[i]);
+            gameList.push(parameters[i]);
         }
         console.log("added games : " + parameters);
         console.log("game list : " + gameList);
-        SaveDatas();
+        SaveGames();
         message.channel.sendMessage("J'ai donc ajouté les jeux suivant à votre ludothèque : "+parameters);
     }
 
@@ -236,7 +285,7 @@ function HandleDirectMessages(message)
         console.log("removed games : " + removedGames);
         console.log("games not found : " + notFoundGames);
         console.log("game list : " + gameList);
-        SaveDatas();
+        SaveGames();
         if(removedGames.length > 0)
         {
             message.channel.sendMessage("J'ai retiré les jeux suivant de votre ludothèque : " + removedGames);
@@ -278,13 +327,13 @@ function HandleAllMessages(message)
     }
 }
 
-function SaveDatas()
+function SaveGames()
 {
-    fs.writeFile("data.json", JSON.stringify(jsonContent, null, 4), function (err) {
+    fs.writeFile("gamelist.json", JSON.stringify(jsonGames, null, 4), function (err) {
         if (err) {
             console.log(err);
         } else {
-            console.log("JSON saved to data.json");
+            console.log("JSON saved to gamelist.json");
         }
     });
 }
