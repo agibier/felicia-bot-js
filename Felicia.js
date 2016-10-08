@@ -27,12 +27,8 @@ fs.stat('gamelist.json', function (err, stat) {
     {
         console.log('game list file found');
         jsonGames = JSON.parse(fs.readFileSync("gamelist.json"));
-
-        console.log(jsonGames);
-
         gameList = jsonGames.games;
 
-        console.log(gameList);
     } else if (err.code == 'ENOENT') 
     {
         console.log('game list file not found, create it');
@@ -46,13 +42,7 @@ fs.stat('gamelist.json', function (err, stat) {
             ]
         };
         SaveGames();
-
-        console.log(jsonGames);
-
         gameList = jsonGames.games;
-
-        console.log(gameList);
-
     } else {
         console.log('Some other error: ', err.code);
     }
@@ -146,9 +136,11 @@ function HandleServersMessages(message)
         message.channel.sendMessage("Bonsoir.");
     }
 
-    if (message.content == "supprime")
+    if (message.content.startsWith("!say "))
     {
+        var response = message.content.replace("!say ", "")
         message.delete();
+        message.channel.sendMessage(response);
     }
 
     if (message.content.indexOf("(╯°□°）╯︵ ┻━┻") > -1) {
@@ -170,6 +162,7 @@ function HandleServersMessages(message)
         || message.content.indexOf("trouve nous un jeu") > -1
         || message.content.indexOf("A quoi on joue") > -1
         || message.content.indexOf("Trouve nous un jeu") > -1
+        || message.content.indexOf("un autre") > -1
         ))
         || message.content === "!pickgame"
         ) {
@@ -196,7 +189,7 @@ function HandleServersMessages(message)
 
     if (message.content.startsWith("!8ball") && message.content.endsWith("?"))
     {
-        //message.edit(message.content.replace("!8ball", ":8ball:"));
+        message.edit(message.content.replace("!8ball", ":8ball:"));
         var selected = EightBall[randomInt(0, EightBall.length)];
         message.channel.sendMessage(selected);
     }
