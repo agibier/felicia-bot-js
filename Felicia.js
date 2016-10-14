@@ -62,7 +62,6 @@ bot.on('message', message =>
 {
     if (message.author != bot.user)
     {
-        console.log(message.channel.type);
         if (message.channel.type === "text" || debug) {
             HandleServersMessages(message)
         }
@@ -180,7 +179,7 @@ function HandleServersMessages(message)
 
         if (member.user === bot.user)
         {
-            message.channel.sendMessage("La meilleure c'est inconstetablement moi :kissing_closed_eyes:");
+            message.channel.sendMessage("La meilleure c'est incontestablement moi :kissing_closed_eyes:");
         }
         else {
             message.channel.sendMessage(member.user.username);
