@@ -16,9 +16,17 @@ const token = 'MjMwNzQ5MjkxNjYzMTk2MTYx.Cs5cfw.YYsf2K1PMeULnqaRvPYaoTxgPbw';
 // from Discord _after_ ready is emitted.
 bot.on('ready', () => {
     console.log('I am ready!');
+
+    //Try to find super user and set it
+    if(jsonGames.SuperUser)
+    {
+        superUser = jsonGames.SuperUser
+    }
 });
 
 var debug = false;
+
+var superUser;
 
 var jsonGames;
 var gameList;
@@ -33,14 +41,8 @@ fs.stat('gamelist.json', function (err, stat) {
     {
         console.log('game list file not found, create it');
         // file does not exist
-        jsonGames = {
-            "games": [
-                "Overwatch",
-                "Rocket League",
-                "Killing Floor",
-                "Evolve"
-            ]
-        };
+        jsonGames = {};
+        jsonGames.games = new Array();
         SaveGames();
         gameList = jsonGames.games;
     } else {
@@ -68,7 +70,10 @@ bot.on('message', message =>
         if (message.channel.type === "dm" || debug) {
             HandleDirectMessages(message);
         }
-
+        if (superUser && message.author.id == superUser)
+        {
+            HandleSuperUserCommands(message);
+        }
         HandleAllMessages(message);
     }    
 });
@@ -133,13 +138,6 @@ function HandleServersMessages(message)
         || message.content == "Sousse")
     {
         message.channel.sendMessage("Bonsoir.");
-    }
-
-    if (message.content.startsWith("!say "))
-    {
-        var response = message.content.replace("!say ", "")
-        message.delete();
-        message.channel.sendMessage(response);
     }
 
     if (message.content.indexOf("(╯°□°）╯︵ ┻━┻") > -1) {
@@ -241,6 +239,13 @@ function HandleDirectMessages(message)
         message.channel.sendMessage('ping rien que pour vous');
     }
 
+    if (message.content == "ClaimUser")
+    {
+        jsonGames.SuperUser = message.author.id;
+        SaveGames();
+        superUser = jsonGames.SuperUser;
+    }
+
     if(message.content.startsWith("!addgame"))
     {
         console.log("Ouais ouais on ajoute un jeu");
@@ -316,6 +321,16 @@ function HandleAllMessages(message)
 
     if (message.content === '!gamelist') {
         message.channel.sendMessage(gameList);
+    }
+}
+
+function HandleSuperUserCommands(message)
+{
+    if (message.content.startsWith("!Felicia ")) {
+        console.log("Message forcé");
+        var response = message.content.replace("!Felicia ", "")
+        message.delete();
+        message.channel.sendMessage(response);
     }
 }
 
