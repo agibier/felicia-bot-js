@@ -58,6 +58,7 @@ var urwelcome = jsonContent.UrWelcome;
 var gameproposal = jsonContent.gameProposal;
 var goodbye = jsonContent.Goodbye;
 var EightBall = jsonContent.EightBall;
+var OWHeroes = jsonContent.OverwatchHeroes;
 
 // create an event listener for messages
 bot.on('message', message =>
@@ -189,6 +190,44 @@ function HandleServersMessages(message)
         message.edit(message.content.replace("!8ball", ":8ball:"));
         var selected = EightBall[randomInt(0, EightBall.length)];
         message.channel.sendMessage(selected);
+    }
+
+    if ((message.isMentioned(bot.user) &&
+        (
+            (message.content.indexOf("overwatch") > -1
+            || message.content.indexOf("Overwatch") > -1)
+        &&
+            (message.content.indexOf("héros") > -1)
+        ))
+        || message.content.startsWith("!OWHero")
+        || (message.content === "Le monde a besoin de héros."
+        || message.content === "le monde a besoin de héros."
+        || message.content === "Le monde a besoin de héros"
+        || message.content === "le monde a besoin de héros"
+        || message.content === "Le monde a besoin de héros !"
+        || message.content === "le monde a besoin de héros !")
+        ) {
+
+        var HeroSelection = OWHeroes;
+        //if (message.content.indexOf("DPS") > -1 || message.content.indexOf("attaque") > -1 || message.content.indexOf("attaque") > -1 || message.content.indexOf("attaquant") > -1 || message.content.indexOf("offensif") > -1 || message.content.indexOf("offense") > -1)
+        //{
+        //    HeroSelection = OWHeroes.filter(function (x) { x.type === "Offense" });
+        //}
+        //else if (message.content.indexOf("défense") > -1 || message.content.indexOf("défensif") > -1)
+        //{
+        //    HeroSelection = OWHeroes.filter(function (x) { x.type === "Defense" });
+        //}
+        //else if (message.content.indexOf("tank") > -1 || message.content.indexOf("solide") > -1)
+        //{
+        //    HeroSelection = OWHeroes.filter(function (x) { x.type === "Tank" });
+        //}
+        //else if (message.content.indexOf("support") > -1 || message.content.indexOf("soutien") > -1)
+        //{
+        //    HeroSelection = OWHeroes.filter(function (x) { x.type === "Support" });
+        //}
+
+        var selected = HeroSelection[randomInt(0, HeroSelection.length)];
+        message.channel.sendMessage("Un héros ? Voilà " + selected.Name + " qui arrive !");
     }
 
     if (message.content === '!toss') {

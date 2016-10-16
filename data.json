@@ -60,5 +60,29 @@
 		":frowning: Mes sources disent que non",
 		":frowning: les perspectives ne sont pas bonnes",
 		":frowning: C'est vraiment douteux"
-	]
+	],
+    "OverwatchHeroes": [
+        {"type":"Offense", "Name":"Genji"},
+        {"type":"Offense", "Name":"McCree"},
+        {"type":"Offense", "Name":"Pharah"},
+        {"type":"Offense", "Name":"Reaper"},
+        {"type":"Offense", "Name":"Soldier:76"},
+        {"type":"Offense", "Name":"Tracer"},
+        {"type":"Defense", "Name":"Bastion"},
+        {"type":"Defense", "Name":"Hanzo"},
+        {"type":"Defense", "Name":"Junkrat"},
+        {"type":"Defense", "Name":"Mei"},
+        {"type":"Defense", "Name":"Torbjörn"},
+        {"type":"Defense", "Name":"Widowmaker"},
+        {"type":"Tank", "Name":"D.Va"},
+        {"type":"Tank", "Name":"Reinhardt"},
+        {"type":"Tank", "Name":"Roadhog"},
+        {"type":"Tank", "Name":"Winston"},
+        {"type":"Tank", "Name":"Zarya"},
+        {"type":"Support", "Name":"Ana"},
+        {"type":"Support", "Name":"Lúcio"},
+        {"type":"Support", "Name":"Mercy"},
+        {"type":"Support", "Name":"Symmetra"},
+        {"type":"Support", "Name":"Zenyatta"}
+    ]
 }
