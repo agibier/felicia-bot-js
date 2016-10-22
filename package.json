@@ -10,7 +10,8 @@
     "start": "node Felicia.js"
   },
   "dependencies": {
-    "discord.js": "*"
+    "discord.js": "*",
+    "redis":"*"
   },
   "repository": {
     "type": "git",

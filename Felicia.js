@@ -5,6 +5,7 @@
 // import the discord.js module
 const Discord = require('discord.js');
 const fs = require("fs");
+const redisClient = require('redis').createClient();
 
 // create an instance of a Discord Client, and call it bot
 const bot = new Discord.Client();
@@ -12,43 +13,58 @@ const bot = new Discord.Client();
 // the token of your bot - https://discordapp.com/developers/applications/me
 const token = 'MjMwNzQ5MjkxNjYzMTk2MTYx.Cs5cfw.YYsf2K1PMeULnqaRvPYaoTxgPbw';
 
+
+var superUser;
+var jsonGames;
+var gameList;
+
 // the ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted.
 bot.on('ready', () => {
     console.log('I am ready!');
 
     //Try to find super user and set it
-    if(jsonGames.SuperUser)
+    if(jsonGames && jsonGames.SuperUser)
     {
         superUser = jsonGames.SuperUser
     }
 });
 
-var debug = false;
+redisClient.on("error", function (err) {
+    console.log(err);
+});
 
-var superUser;
-
-var jsonGames;
-var gameList;
-fs.stat('gamelist.json', function (err, stat) {
-    if (err == null) 
+redisClient.on('connect', function (err) {
+    if (err == null)
     {
-        console.log('game list file found');
-        jsonGames = JSON.parse(fs.readFileSync("gamelist.json"));
-        gameList = jsonGames.games;
-
-    } else if (err.code == 'ENOENT') 
+        console.log('connected to redis');
+    }
+    else
     {
-        console.log('game list file not found, create it');
-        // file does not exist
-        jsonGames = {};
-        jsonGames.games = new Array();
-        SaveGames();
-        gameList = jsonGames.games;
-    } else {
-        console.log('Some other error: ', err.code);
+        console.log('Could not connect to redis');
+        console.log('Using local file');
+
+        fs.stat('gamelist.json', function (err, stat) {
+            if (err == null) {
+                console.log('game list file found');
+                jsonGames = JSON.parse(fs.readFileSync("gamelist.json"));
+                gameList = jsonGames.games;
+
+            } else if (err.code == 'ENOENT') {
+                console.log('game list file not found, create it');
+                // file does not exist
+                jsonGames = {};
+                jsonGames.games = new Array();
+                SaveGames();
+                gameList = jsonGames.games;
+            } else {
+                console.log('Some other error: ', err.code);
+            }
+        });
     }
 });
+
+var debug = false;
 
 var contents = fs.readFileSync("data.json");
 var jsonContent = JSON.parse(contents);
